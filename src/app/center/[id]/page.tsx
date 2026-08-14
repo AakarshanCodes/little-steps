@@ -3,12 +3,11 @@ import * as React from "react"
 import { Star, MapPin, ShieldCheck, Clock, Phone, Heart, ArrowRight, ChevronRight, Check } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { PrismaClient } from "@prisma/client"
 import { Navbar } from "@/components/layout/navbar"
 import { FloatingCard } from "@/components/ui/floating-card"
 import { Button } from "@/components/ui/button"
 
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
 
 export default async function CenterDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
