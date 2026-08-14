@@ -4,6 +4,9 @@ import { Star, MapPin, ShieldCheck, Clock, Phone, Heart, ArrowRight, ChevronRigh
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { PrismaClient } from "@prisma/client"
+import { Navbar } from "@/components/layout/navbar"
+import { FloatingCard } from "@/components/ui/floating-card"
+import { Button } from "@/components/ui/button"
 
 const prisma = new PrismaClient()
 

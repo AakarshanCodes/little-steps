@@ -84,7 +84,7 @@ export default function BookingFlowPage({ params }: { params: Promise<{ centerId
         
         {/* Progress Indicator */}
         <div className="mb-12">
-          <Link href={`/center/${params.centerId || '1'}`} className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
+          <Link href={`/center/${resolvedParams.centerId || '1'}`} className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
             <ChevronLeft size={16} className="mr-1"/> Back to Center
           </Link>
           

@@ -49,7 +49,7 @@ export function Navbar() {
           ) : session ? (
             <>
               <Link 
-                href={session.user.role === 'PROVIDER' ? '/provider' : session.user.role === 'ADMIN' ? '/admin' : '/parent'}
+                href={session?.user?.role === 'PROVIDER' ? '/provider' : session?.user?.role === 'ADMIN' ? '/admin' : '/parent'}
                 className="hidden md:block text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 Dashboard
