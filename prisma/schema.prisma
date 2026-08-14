@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  role          String    @default("PARENT") // 'PARENT', 'PROVIDER', 'ADMIN'
+  name          String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  children      Child[]
+  centers       Center[]  // If role is PROVIDER
+  bookings      Booking[]
+}
+
+model Child {
+  id          String   @id @default(cuid())
+  parentId    String
+  name        String
+  ageGroup    String   // e.g. "Infant", "Toddler", "Preschool"
+  specialNeeds String? 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  parent      User     @relation(fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model Center {
+  id          String   @id @default(cuid())
+  providerId  String
+  name        String
+  description String
+  location    String   // e.g. Address or GeoJSON string
+  latitude    Float?
+  longitude   Float?
+  capacity    Int
+  priceHourly Float
+  verified    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  provider    User        @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  caregivers  Caregiver[]
+  bookings    Booking[]
+}
+
+model Caregiver {
+  id             String   @id @default(cuid())
+  centerId       String
+  name           String
+  bio            String?
+  certifications String   // Comma-separated list
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  center         Center   @relation(fields: [centerId], references: [id], onDelete: Cascade)
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  parentId  String
+  centerId  String
+  startTime DateTime
+  endTime   DateTime
+  status    String        @default("PENDING") // 'PENDING', 'APPROVED', 'REJECTED', 'COMPLETED', 'CANCELLED'
+  totalCost Float
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  
+  parent    User          @relation(fields: [parentId], references: [id])
+  center    Center        @relation(fields: [centerId], references: [id])
+}

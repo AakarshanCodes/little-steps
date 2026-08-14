@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDFBF7;
+  --foreground: #1A1A1A;
+  --primary: #E87A5D; /* Soft Coral */
+  --primary-hover: #D9694C;
+  --secondary: #84A98C; /* Soft Sage */
+  --secondary-hover: #72967A;
+  --muted: #F3F0EA;
+  --muted-foreground: #666666;
+  --border: #E8E5DF;
+  --card: #FFFFFF;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 20px -2px rgba(26, 26, 26, 0.05);
+  --shadow-floating: 0 10px 40px -4px rgba(26, 26, 26, 0.08), 0 4px 12px -2px rgba(26, 26, 26, 0.04);
+  --shadow-floating-hover: 0 14px 45px -4px rgba(26, 26, 26, 0.12), 0 8px 16px -4px rgba(26, 26, 26, 0.06);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Use Inter as default font */
+  font-family: var(--font-sans); 
+}
+
+/* Base heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
